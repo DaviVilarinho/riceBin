@@ -70,7 +70,7 @@ ZSH_THEME="pygmalion"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git golang asdf debian docker docker-compose vi-mode cp pip last-working-dir)
+plugins=(git golang asdf debian docker docker-compose vi-mode cp pip last-working-dir postgres)
 
 source $ZSH/oh-my-zsh.sh
 

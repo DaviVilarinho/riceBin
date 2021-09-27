@@ -1,0 +1,94 @@
+-- Conky, a system monitor https://github.com/brndnmtthws/conky
+--
+-- This configuration file is Lua code. You can write code in here, and it will
+-- execute when Conky loads. You can use it to generate your own advanced
+-- configurations.
+--
+-- Try this (remove the `--`):
+--
+--   print("Loading Conky config")
+--
+-- For more on Lua, see:
+-- https://www.lua.org/pil/contents.html
+
+conky.config = {
+    alignment = 'bottom_right',
+    background = false,
+    border_width = 5,
+    cpu_avg_samples = 2,
+    -- C7CFD E->282828
+    default_color = "#282828",
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'Roboto Mono:size=12',
+    gap_x = 34,
+    gap_y = -29,
+    minimum_height = 5,
+    minimum_width = 5,
+    maximum_width = 320,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    own_window_transparent = true,
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.5,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
+
+-- 97A2B 8-> 435866
+-- 98c37 9-> 499918
+conky.text = [[
+${font Quicksand Medium: size=32}${time %H:%M}$font
+${font Quicksand Medium: size=13}${time %a}, ${time %d %b %Y}$font
+
+
+${font Quicksand Bold: size 12}${color 61afef}SYSTEM$font ${hr 3}$color
+${color 435866}OS$color $alignr Debian
+${color 435866}Kernel$color $alignr $kernel
+${color 435866}Host$color $alignr $nodename
+${color 435866}Uptime$color $alignr $uptime
+${color 435866}Battery$color $alignr $battery
+${color 435866}Volume$color $alignr $pa_sink_volume%
+
+${font Quicksand Bold: size 12}${color 61afef}CPU$font ${hr 3}$color
+${color 435866}Usage$color $alignr $cpu%
+${color 435866}Frequency$color $alignr $freq_g GHz
+${color 499918}${cpugraph cpu0 24,320}$color
+
+${font Quicksand Bold: size 12}${color 61afef}MEMORY$font ${hr 3}$color
+${color 435866}RAM $color ${alignc - 16}$mem / $memmax $alignr $memperc%
+${color 499918}${membar 5}$color
+${color 435866}Swap $color ${alignc - 16}$swap / $swapmax $alignr $swapperc%
+${color 499918}${swapbar 5}$color
+
+${font Quicksand Bold: size 12}${color 61afef}STORAGE$font ${hr 3}$color
+/ $color${fs_used /}/${fs_size /} ${color 499918}${fs_bar 8 /}$color
+
+${font Quicksand Bold: size 12}${color 61afef}PROCESSES$font ${hr 3}$color
+${color 435866}Name                 PID     CPU     MEM$color
+$color${top name 1} ${color 499918}${top pid 1} ${top cpu 1}% ${top mem 1}%
+$color${top name 2} ${color 499918}${top pid 2} ${top cpu 2}% ${top mem 2}%
+$color${top name 3} ${color 499918}${top pid 3} ${top cpu 3}% ${top mem 3}%
+$color${top name 4} ${color 499918}${top pid 4} ${top cpu 4}% ${top mem 4}%
+
+$color ${color 499918}$color
+${font Quicksand Bold: size 12}${color 61afef}DESKTOP$font ${hr 3}$color
+$color ${color 499918}$color $alignr [ $desktop ] / $desktop_number
+
+]]

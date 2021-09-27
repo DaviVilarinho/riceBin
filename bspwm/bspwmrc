@@ -5,14 +5,15 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 #bspc monitor HDMI-1 -d X
 bspc monitor -d I II III IV V VI VII VIII IX X
 
+#bspc config initial_polarity first_child # inverte novo
 bspc config border_width         5
-bspc config window_gap           10
+bspc config window_gap           15
 ##  bspc config active_border_color '#aa00aa'
 ##  bspc config normal_border_color '#552055'
 ##  bspc config focused_border_color '#ff33ac'
-bspc config active_border_color '#00ffff'
-bspc config normal_border_color '#2288ff'
-bspc config focused_border_color '#00ffff'
+bspc config active_border_color '#61AFEF'
+bspc config normal_border_color '#256699'
+bspc config focused_border_color '#61AFEF'
 
 bspc config split_ratio          0.56
 bspc config borderless_monocle   true
@@ -29,12 +30,12 @@ bspc rule -a Code desktop='^1'
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-feh --bg-scale /home/dv/Pictures/wallpapers/mountain.jpg
-killall picom ; picom
-killall polybar ; sleep 2; bash ~/.config/polybar/launch.sh --blocks
+feh --bg-scale /home/dv/Pictures/wallpapers/peak.jpg
+killall picom ; picom -b
+killall polybar ; sleep 2; bash ~/.config/polybar/launch.sh --shapes &
 flameshot
 xmodmap /home/dv/.Xmodmap
-#killall redshift ; sleep 2; redshift -l -18:-48 -t 5700:3100 -b 100:100
 #killall dunst ; dunst
 wmname LG3D
 xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output HDMI-1 --mode 1920x1080 --rotate normal --same-as eDP-1
+#killall conky ; conky &
