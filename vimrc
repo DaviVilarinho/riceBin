@@ -1,5 +1,5 @@
-"highlight Pmenu ctermfg=3 ctermbg=6
-"highlight PmenuSel ctermfg=3 ctermbg=15
+highlight Pmenu ctermfg=0 ctermbg=6
+highlight PmenuSel ctermfg=0 ctermbg=15
 
 set number relativenumber
 "autocmd FileType *hs set nonumber norelativenumber
