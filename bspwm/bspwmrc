@@ -3,7 +3,18 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #bspc monitor HDMI-1 -d X
+## in the case of multiple monitors
+if [ -z $(xrandr --query | grep -i "HDMI-1 connected" | awk '{print $1}') ]; then
+  xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal --gamma 1.1 
+  MONITOR="Only one monitor detected"
+  echo $MONITOR > /tmp/monitors.log
+else
+  xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal --gamma 1.1 --output HDMI-1 --mode 1920x1080 --pos 0x0 --rotate normal --same-as eDP-1 --gamma 1.15
+  MONITOR="Two monitors detected"
+  echo $MONITOR > /tmp/monitors.log
+fi
 bspc monitor -d I II III IV V VI VII VIII IX X
+
 
 #bspc config initial_polarity first_child # inverte novo
 bspc config border_width         4
@@ -20,7 +31,7 @@ bspc config window_gap           0
 ##bspc config focused_border_color '#00aacc'
 #### CYBERPUNK
 bspc config active_border_color '#00ffff'
-bspc config normal_border_color '#339933'
+bspc config normal_border_color '#883388'
 bspc config focused_border_color '#ff44ff'
 
 bspc config split_ratio          0.56
@@ -38,12 +49,13 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Zathura manage=on state=tiling
 
+bash ~/.config/polybar/launch.sh --cuts &
 xmodmap /home/workdv/.Xmodmap
 wmname LG3D
+export _JAVA_AWT_WM_NONREPARENTING=1
 flameshot
-feh --bg-scale /home/workdv/Pictures/wallpapers/cyberpunk/vice_city.jpg &
-killall picom ; sleep 2 ; picom -b &
-killall polybar ; sleep 2 ; bash ~/.config/polybar/launch.sh --cuts &
-killall dunst ; sleep 2 ; dunst &
-#killall redshift ; sleep 5; redshift -l -18:-48 -t 6500:2800 -b 1:1 &
+feh --bg-scale /home/workdv/Pictures/wallpapers/trafficlights-more-purple.jpg &
+killall picom ; picom -b &
+#pgrep redshift || redshift
+killall dunst ; dunst
 #killall conky ; conky &
